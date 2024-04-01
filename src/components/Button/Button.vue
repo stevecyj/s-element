@@ -1,11 +1,8 @@
-<script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
-  name: 'SButton'
-})
-</script>
 <script setup lang="ts">
 import type { ButtonProps } from './types'
+defineOptions({
+  name: 'SButton'
+})
 defineProps<ButtonProps>()
 </script>
 
