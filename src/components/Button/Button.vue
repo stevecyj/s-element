@@ -6,7 +6,7 @@ defineOptions({
 })
 withDefaults(defineProps<ButtonProps>(), { nativeType: 'button' })
 
-const _ref = ref<HTMLElement>()
+const _ref = ref<HTMLButtonElement>()
 
 defineExpose({ ref: _ref })
 </script>
