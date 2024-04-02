@@ -33,4 +33,9 @@ defineExpose({ ref: _ref })
   </button>
 </template>
 
-<style lang="scss" scoped></style>
+<style>
+.s-button {
+  --main-bg-color: #ff0000;
+  background-color: var(--main-bg-color);
+}
+</style>
