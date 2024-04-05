@@ -17,6 +17,11 @@ onMounted(() => {
     <Button type="primary" plain disabled ref="buttonRef">test button</Button>
     <a href="https://google.com" target="_blank" rel="noopener noreferrer">google</a>
   </main>
+  <h1>H1</h1>
+  <h2>H2</h2>
+  <h3>H3</h3>
+  <a href="#">the link</a>
+  <hr />
 </template>
 
 <style scoped>
