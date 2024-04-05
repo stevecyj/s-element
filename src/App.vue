@@ -14,9 +14,34 @@ onMounted(() => {
   </header>
 
   <main>
-    <Button type="primary" plain disabled ref="buttonRef">test button</Button>
-    <a href="https://google.com" target="_blank" rel="noopener noreferrer">google</a>
+    <Button type="primary" ref="buttonRef">Test Button</Button>
+    <Button plain>Plain Button</Button>
+    <Button round>Round Button</Button>
+    <Button circle>S</Button>
+    <Button disabled>test button</Button>
   </main>
+  <br />
+  <div>
+    <Button type="primary">Primary</Button>
+    <Button type="success">Success</Button>
+    <Button type="warning">Warning</Button>
+    <Button type="danger">Danger</Button>
+    <Button type="info">Info</Button>
+  </div>
+  <br />
+  <div>
+    <Button type="primary" plain>Primary</Button>
+    <Button type="success" plain>Success</Button>
+    <Button type="warning" plain>Warning</Button>
+    <Button type="danger" plain>Danger</Button>
+    <Button type="info" plain>Info</Button>
+  </div>
+  <br />
+  <div>
+    <Button size="large">Large</Button>
+    <Button size="small">Small</Button>
+  </div>
+  <a href="https://google.com" target="_blank" rel="noopener noreferrer">google</a>
   <h1>H1</h1>
   <h2>H2</h2>
   <h3>H3</h3>

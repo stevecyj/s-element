@@ -34,8 +34,8 @@ defineExpose({ ref: _ref })
 </template>
 
 <style>
-.s-button {
+/* .s-button {
   --main-bg-color: #ff0000;
   background-color: var(--main-bg-color);
-}
+} */
 </style>
