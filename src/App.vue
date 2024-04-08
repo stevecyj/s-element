@@ -41,10 +41,11 @@ onMounted(() => {
     <Button size="large">Large</Button>
     <Button size="small">Small</Button>
   </div>
-  <a href="https://google.com" target="_blank" rel="noopener noreferrer">google</a>
   <h1>H1</h1>
   <h2>H2</h2>
   <h3>H3</h3>
+  <a href="https://google.com" target="_blank" rel="noopener noreferrer">google</a>
+  <br />
   <a href="#">the link</a>
   <hr />
 </template>
