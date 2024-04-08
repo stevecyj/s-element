@@ -4,7 +4,7 @@ import Button from '@components/Button/Button.vue'
 import type { ButtonInstance } from '@components/Button/types'
 const buttonRef = ref<ButtonInstance | null>(null)
 onMounted(() => {
-  console.log(buttonRef.value?.ref)
+  console.log('buttonRef: ', buttonRef.value?.ref)
 })
 </script>
 
