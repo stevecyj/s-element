@@ -14,6 +14,7 @@ onMounted(() => {
   </header>
 
   <main>
+    <Button ref="buttonRef">Test Button</Button>
     <Button type="primary" ref="buttonRef">Test Button</Button>
     <Button plain>Plain Button</Button>
     <Button round>Round Button</Button>
