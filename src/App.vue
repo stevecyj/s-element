@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
 import Button from '@components/Button/Button.vue'
 import type { ButtonInstance } from '@components/Button/types'
 const buttonRef = ref<ButtonInstance | null>(null)
@@ -10,7 +9,13 @@ onMounted(() => {
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+    <img
+      alt="Vue logo"
+      class="logo"
+      src="./assets/logo.svg"
+      width="125"
+      height="125"
+    />
   </header>
 
   <main>
@@ -45,7 +50,9 @@ onMounted(() => {
   <h1>H1</h1>
   <h2>H2</h2>
   <h3>H3</h3>
-  <a href="https://google.com" target="_blank" rel="noopener noreferrer">google</a>
+  <a href="https://google.com" target="_blank" rel="noopener noreferrer"
+    >google</a
+  >
   <br />
   <a href="#">the link</a>
   <hr />

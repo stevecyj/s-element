@@ -38,6 +38,7 @@
     "postcss-nested": "^6.0.1",
     "prettier": "^3.0.3",
     "typescript": "~5.4.0",
+    "unplugin-auto-import": "^0.17.5",
     "vite": "^5.1.6",
     "vite-plugin-vue-devtools": "^7.0.18",
     "vitest": "^1.4.0",
