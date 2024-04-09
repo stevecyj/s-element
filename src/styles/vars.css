@@ -2,7 +2,16 @@
   /* colors */
   --s-color-white: #ffffff;
   --s-color-black: #000000;
-  --s-color-primary: #409eff;
+  --colors: (primary: #409eff, success: #67c23a, warning: #e6a23c, danger: #f56c6c, info: #909399);
+  @each $val, $color in (primary, sucess), (#409eff, #67c23a) {
+    --s-color-1-$(val): $(color);
+    @for $i from 3 to 9 by 2 {
+      --s-color-$(val)-light-$(i): mix(#fff, $(color), .$(i));
+    }
+    --s-color-$(val)-light-8: mix(#fff, $(color), 0.8);
+    --s-color-$(val)-dark-2: mix(#000, $(color), 0.2);
+  }
+  /* --s-color-primary: #409eff;
   --s-color-primary-light-3: #79bbff;
   --s-color-primary-light-5: #a0cfff;
   --s-color-primary-light-7: #c6e2ff;
@@ -36,7 +45,7 @@
   --s-color-info-light-7: #dedfe0;
   --s-color-info-light-8: #e9e9eb;
   --s-color-info-light-9: #f4f4f5;
-  --s-color-info-dark-2: #73767a;
+  --s-color-info-dark-2: #73767a; */
 
   --s-bg-color: #ffffff;
   --s-bg-color-page: #f2f3f5;
