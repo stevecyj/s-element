@@ -3,6 +3,7 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import VueDevTools from 'vite-plugin-vue-devtools'
 
@@ -13,6 +14,12 @@ export default defineConfig({
     AutoImport({
       imports: ['vue'],
       dts: 'src/auto-imports.d.ts'
+    }),
+    Components({
+      // 從 `./src/components/` 路徑查找
+      extensions: ['vue'],
+      include: [/\.vue$/, /\.vue\?vue/],
+      dts: 'src/auto-components.ts'
     }),
     vueJsx(),
     VueDevTools()
