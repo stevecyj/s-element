@@ -46,6 +46,24 @@ onMounted(() => {
     <Button size="large">Large</Button>
     <Button size="small">Small</Button>
   </div>
+
+  <Collapse>
+    <CollapseItem name="a">
+      <template #title>
+        <h1>nice title</h1>
+      </template>
+      <h1>headline title</h1>
+      <div>this is content a aaa</div>
+    </CollapseItem>
+
+    <CollapseItem name="b" title="nice title b item b">
+      <div>this is bbbbb test</div>
+    </CollapseItem>
+
+    <CollapseItem name="c" title="nice cccc" disabled>
+      <div>this is cccc test</div>
+    </CollapseItem>
+  </Collapse>
   <h1>H1</h1>
   <h2>H2</h2>
   <h3>H3</h3>
