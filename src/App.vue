@@ -1,8 +1,15 @@
 <script setup lang="ts">
 import type { ButtonInstance } from '@components/Button/types'
+
 const buttonRef = ref<ButtonInstance | null>(null)
+const openedValue = ref(['a'])
+
 onMounted(() => {
   console.log('buttonRef: ', buttonRef.value?.ref)
+
+  // setTimeout(() => {
+  //   openedValue.value = ['a', 'b']
+  // }, 2000)
 })
 </script>
 
@@ -47,7 +54,7 @@ onMounted(() => {
     <Button size="small">Small</Button>
   </div>
 
-  <Collapse>
+  <Collapse v-model="openedValue" accordion>
     <CollapseItem name="a">
       <template #title>
         <h1>nice title</h1>
@@ -64,6 +71,9 @@ onMounted(() => {
       <div>this is cccc test</div>
     </CollapseItem>
   </Collapse>
+  {{ openedValue }}
+  <br />
+  <hr />
   <h1>H1</h1>
   <h2>H2</h2>
   <h3>H3</h3>
