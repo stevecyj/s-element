@@ -24,18 +24,21 @@ const handleClick = () => {
   <div class="s-collapse-item" :class="{ 'is-disabled': disabled }">
     <div
       class="s-collapse-item__header"
+      :class="{ 'is-disabled': disabled, 'is-active': isActive }"
       :id="`item-header-${name}`"
       @click="handleClick"
     >
       <slot name="title">{{ title }}</slot>
     </div>
-    <div
-      class="s-collapse-item__content"
-      :id="`item-content-${name}`"
-      v-show="isActive"
-    >
-      <slot />
-    </div>
+    <Transition name="fade">
+      <div
+        class="s-collapse-item__content"
+        :id="`item-content-${name}`"
+        v-show="isActive"
+      >
+        <slot />
+      </div>
+    </Transition>
   </div>
 </template>
 
