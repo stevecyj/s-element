@@ -54,20 +54,20 @@ onMounted(() => {
     <Button size="small">Small</Button>
   </div>
 
-  <Collapse v-model="openedValue" accordion>
+  <Collapse v-model="openedValue">
     <CollapseItem name="a">
       <template #title>
-        <h1>nice title</h1>
+        <h1>Title A</h1>
       </template>
       <h1>headline title</h1>
       <div>this is content a aaa</div>
     </CollapseItem>
 
-    <CollapseItem name="b" title="nice title b item b">
+    <CollapseItem name="b" title="Title B">
       <div>this is bbbbb test</div>
     </CollapseItem>
 
-    <CollapseItem name="c" title="nice cccc" disabled>
+    <CollapseItem name="c" title="Title C" disabled>
       <div>this is cccc test</div>
     </CollapseItem>
   </Collapse>

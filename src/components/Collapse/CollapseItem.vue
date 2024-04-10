@@ -18,6 +18,27 @@ const handleClick = () => {
   if (props.disabled) return
   collapseContext?.handleItemClick(props.name)
 }
+
+const transitionEvents: Record<string, (el: HTMLElement) => void> = {
+  beforeEnter(el: HTMLElement) {
+    el.style.height = '0px'
+  },
+  enter(el: HTMLElement) {
+    el.style.height = `${el.scrollHeight}px`
+  },
+  afterEnter(el: HTMLElement) {
+    el.style.height = ''
+  },
+  beforeLeave(el: HTMLElement) {
+    el.style.height = `${el.scrollHeight}px`
+  },
+  leave(el: HTMLElement) {
+    el.style.height = '0px'
+  },
+  afterLeave(el: HTMLElement) {
+    el.style.height = ''
+  }
+}
 </script>
 
 <template>
@@ -30,7 +51,15 @@ const handleClick = () => {
     >
       <slot name="title">{{ title }}</slot>
     </div>
-    <Transition name="fade">
+    <Transition
+      name="slide"
+      @before-enter="transitionEvents.beforeEnter"
+      @enter="transitionEvents.enter"
+      @after-enter="transitionEvents.afterEnter"
+      @before-leave="transitionEvents.beforeLeave"
+      @leave="transitionEvents.leave"
+      @after-leave="transitionEvents.afterLeave"
+    >
       <div
         class="s-collapse-item__content"
         :id="`item-content-${name}`"
