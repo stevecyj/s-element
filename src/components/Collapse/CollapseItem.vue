@@ -51,15 +51,7 @@ const transitionEvents: Record<string, (el: HTMLElement) => void> = {
     >
       <slot name="title">{{ title }}</slot>
     </div>
-    <Transition
-      name="slide"
-      @before-enter="transitionEvents.beforeEnter"
-      @enter="transitionEvents.enter"
-      @after-enter="transitionEvents.afterEnter"
-      @before-leave="transitionEvents.beforeLeave"
-      @leave="transitionEvents.leave"
-      @after-leave="transitionEvents.afterLeave"
-    >
+    <Transition name="slide" v-on="transitionEvents">
       <div
         class="s-collapse-item__content"
         :id="`item-content-${name}`"
