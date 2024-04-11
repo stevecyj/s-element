@@ -22,21 +22,25 @@ const handleClick = () => {
 const transitionEvents: Record<string, (el: HTMLElement) => void> = {
   beforeEnter(el: HTMLElement) {
     el.style.height = '0px'
+    el.style.overflow = 'hidden'
   },
   enter(el: HTMLElement) {
     el.style.height = `${el.scrollHeight}px`
   },
   afterEnter(el: HTMLElement) {
     el.style.height = ''
+    el.style.overflow = ''
   },
   beforeLeave(el: HTMLElement) {
     el.style.height = `${el.scrollHeight}px`
+    el.style.overflow = 'hidden'
   },
   leave(el: HTMLElement) {
     el.style.height = '0px'
   },
   afterLeave(el: HTMLElement) {
     el.style.height = ''
+    el.style.overflow = ''
   }
 }
 </script>
@@ -52,12 +56,10 @@ const transitionEvents: Record<string, (el: HTMLElement) => void> = {
       <slot name="title">{{ title }}</slot>
     </div>
     <Transition name="slide" v-on="transitionEvents">
-      <div
-        class="s-collapse-item__content"
-        :id="`item-content-${name}`"
-        v-show="isActive"
-      >
-        <slot />
+      <div class="s-collapse-item__wrapper" v-show="isActive">
+        <div class="s-collapse-item__content" :id="`item-content-${name}`">
+          <slot />
+        </div>
       </div>
     </Transition>
   </div>
