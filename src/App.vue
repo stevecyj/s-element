@@ -24,6 +24,8 @@ onMounted(() => {
     />
   </header>
 
+  <font-awesome-icon icon="fa-solid fa-user-secret" />
+
   <main>
     <Button ref="buttonRef">Test Button</Button>
     <Button type="primary" ref="buttonRef">Test Button</Button>
