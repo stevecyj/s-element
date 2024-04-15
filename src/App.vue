@@ -24,7 +24,9 @@ onMounted(() => {
     />
   </header>
 
-  <Icon icon="arrow-up" size="2xl" spin />
+  <Icon icon="arrow-up" size="2xl" type="primary" />
+  <Icon icon="arrow-up" size="2xl" type="danger" />
+  <Icon icon="arrow-up" size="2xl" type="danger" color="#0e7a0d" />
 
   <main>
     <Button ref="buttonRef">Test Button</Button>
