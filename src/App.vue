@@ -24,7 +24,7 @@ onMounted(() => {
     />
   </header>
 
-  <font-awesome-icon icon="fa-solid fa-user-secret" />
+  <Icon icon="arrow-up" size="2xl" spin />
 
   <main>
     <Button ref="buttonRef">Test Button</Button>

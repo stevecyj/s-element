@@ -11,6 +11,7 @@ declare module 'vue' {
     Collapse: typeof import('./components/Collapse/Collapse.vue')['default']
     CollapseItem: typeof import('./components/Collapse/CollapseItem.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
+    Icon: typeof import('./components/Icon/Icon.vue')['default']
     IconCommunity: typeof import('./components/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./components/icons/IconDocumentation.vue')['default']
     IconEcosystem: typeof import('./components/icons/IconEcosystem.vue')['default']
