@@ -30,8 +30,8 @@ onMounted(() => {
   <Icon icon="user-secret" size="xl" type="info" />
 
   <main>
-    <Button ref="buttonRef">Test Button</Button>
-    <Button type="primary" ref="buttonRef">Test Button</Button>
+    <Button ref="buttonRef">Default Button</Button>
+    <Button type="primary">Test Button</Button>
     <Button plain>Plain Button</Button>
     <Button round>Round Button</Button>
     <Button circle>S</Button>
@@ -82,6 +82,30 @@ onMounted(() => {
     </CollapseItem>
   </Collapse>
   {{ openedValue }}
+  <br />
+  <hr />
+  <Alert title="Primary Alert"></Alert>
+  <Alert title="" type="success">
+    <template #title> Success Alert </template>
+    <template #description> Success description </template>
+  </Alert>
+  <Alert title="Warning Alert" type="warning"></Alert>
+  <Alert title="Danger Alert" type="danger"></Alert>
+  <Alert title="Info Alert" type="info" :closable="false"></Alert>
+  <br />
+  <hr />
+  <Alert title="Primary Alert" effect="dark"></Alert>
+  <Alert title="" type="success" effect="dark">
+    <template #title> Success Alert</template>
+  </Alert>
+  <Alert
+    title="Warning Alert"
+    description="Warning description"
+    type="warning"
+    effect="dark"
+  ></Alert>
+  <Alert title="Danger Alert" type="danger" effect="dark"></Alert>
+  <Alert title="Info Alert" type="info" effect="dark"></Alert>
   <br />
   <hr />
   <h1>H1</h1>

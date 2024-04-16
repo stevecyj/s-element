@@ -1,0 +1,64 @@
+.s-alert {
+  --s-alert-padding: 8px 16px;
+  --s-alert-border-radius-base: var(--s-border-radius-base);
+  --s-alert-bg-color: var(--s-color-white);
+  --s-alert-content-font-size: 13px;
+  --s-alert-icon-size: 16px;
+  --s-alert-text-color: var(--s-text-color-primary);
+  --s-alert-top-margin: 20px;
+}
+.s-alert {
+  width: 50%;
+  padding: var(--s-alert-padding);
+  margin: 0;
+  box-sizing: border-box;
+  border-radius: var(--s-alert-border-radius-base);
+  position: relative;
+  background-color: var(--s-alert-bg-color);
+  overflow: hidden;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  transition: opacity var(--s-transition-duration);
+  margin-top: var(--s-alert-top-margin);
+  .s-alert__content {
+    font-size: var(--s-alert-content-font-size);
+    color: var(--s-alert-text-color);
+    line-height: 18px;
+    vertical-align: text-top;
+  }
+  .s-alert__close {
+    font-size: var(--el-alert-close-font-size);
+    opacity: 1;
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    cursor: pointer;
+  }
+  &.s-alert__light {
+    .s-alert__close {
+      color: var(--s-text-color-placeholder);
+    }
+  }
+  &.s-alert__dark {
+    .s-alert__close {
+      color: var(--s-color-white);
+    }
+  }
+}
+
+.s-alert-fade-enter-from,
+.s-alert-fade-leave-to {
+  opacity: 0;
+}
+
+@each $val in primary, success, warning, info, danger {
+  .s-alert__$(val).s-alert__light {
+    --s-alert-text-color: var(--s-color-$(val));
+    --s-alert-bg-color: var(--s-color-$(val)-light-9);
+  }
+  .s-alert__$(val).s-alert__dark {
+    --s-alert-text-color: var(--s-color-white);
+    --s-alert-bg-color: var(--s-color-$(val));
+  }
+}

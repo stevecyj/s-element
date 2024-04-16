@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Alert: typeof import('./components/Alert/Alert.vue')['default']
     Button: typeof import('./components/Button/Button.vue')['default']
     Collapse: typeof import('./components/Collapse/Collapse.vue')['default']
     CollapseItem: typeof import('./components/Collapse/CollapseItem.vue')['default']

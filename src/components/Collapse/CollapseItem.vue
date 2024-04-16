@@ -47,6 +47,7 @@ const transitionEvents: Record<string, (el: HTMLElement) => void> = {
 
 <template>
   <div class="s-collapse-item" :class="{ 'is-disabled': disabled }">
+    <!-- header -->
     <div
       class="s-collapse-item__header"
       :class="{ 'is-disabled': disabled, 'is-active': isActive }"
@@ -58,6 +59,7 @@ const transitionEvents: Record<string, (el: HTMLElement) => void> = {
     </div>
     <Transition name="slide" v-on="transitionEvents">
       <div class="s-collapse-item__wrapper" v-show="isActive">
+        <!-- content -->
         <div class="s-collapse-item__content" :id="`item-content-${name}`">
           <slot />
         </div>
@@ -68,6 +70,6 @@ const transitionEvents: Record<string, (el: HTMLElement) => void> = {
 
 <style scoped>
 .s-collapse-item__header {
-  font-size: 30px;
+  font-size: calc(var(--s-font-size-base) + 6px);
 }
 </style>
