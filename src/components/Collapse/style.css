@@ -33,6 +33,12 @@
   }
   &.is-active {
     border-bottom-color: transparent;
+    .header-angle {
+      transform: rotate(90deg);
+    }
+  }
+  .header-angle {
+    transition: transform var(--s-transition-duration);
   }
 }
 .s-collapse-item__content {
@@ -48,5 +54,5 @@
 }
 .slide-enter-active,
 .slide-leave-active {
-  transition: height 1s ease-in-out;
+  transition: height var(--s-transition-duration);
 }

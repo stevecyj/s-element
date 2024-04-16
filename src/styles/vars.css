@@ -66,4 +66,7 @@
   --s-disabled-bg-color: var(--s-fill-color-light);
   --s-disabled-text-color: var(--s-text-color-placeholder);
   --s-disabled-border-color: var(--s-border-color-light);
+  /*animation*/
+  --s-transition-duration: 0.3s;
+  --s-transition-duration-fast: 0.2s;
 }
