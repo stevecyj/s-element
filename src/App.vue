@@ -27,6 +27,7 @@ onMounted(() => {
   <Icon icon="arrow-up" size="2xl" type="primary" />
   <Icon icon="arrow-up" size="2xl" type="danger" />
   <Icon icon="arrow-up" size="2xl" type="danger" color="#0e7a0d" />
+  <Icon icon="user-secret" size="xl" type="danger" color="#0e7a0d" />
 
   <main>
     <Button ref="buttonRef">Test Button</Button>
