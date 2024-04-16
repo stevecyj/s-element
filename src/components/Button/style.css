@@ -81,6 +81,9 @@
     background-color: var(--s-button-disabled-bg-color);
     border-color: var(--s-button-disabled-border-color);
   }
+  [class*='s-icon'] + span {
+    margin-left: 6px;
+  }
 }
 
 @each $val in primary, success, warning, info, danger {

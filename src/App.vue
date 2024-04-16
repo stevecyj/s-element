@@ -58,6 +58,11 @@ onMounted(() => {
     <Button size="large">Large</Button>
     <Button size="small">Small</Button>
   </div>
+  <br />
+  <div>
+    <Button size="large" loading>Large</Button>
+    <Button size="large" icon="fish">Fish</Button>
+  </div>
 
   <Collapse v-model="openedValue">
     <CollapseItem name="a">
