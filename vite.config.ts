@@ -12,11 +12,12 @@ export default defineConfig({
   plugins: [
     vue(),
     AutoImport({
-      imports: ['vue'],
+      imports: ['vue', 'vitest'],
       dts: 'src/auto-imports.d.ts'
     }),
     Components({
       // 從 `./src/components/` 路徑查找
+      dirs: ['src/components'],
       extensions: ['vue'],
       include: [/\.vue$/, /\.vue\?vue/],
       dts: 'src/auto-components.ts'

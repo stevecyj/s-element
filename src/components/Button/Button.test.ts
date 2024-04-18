@@ -4,7 +4,7 @@ import Button from './Button.vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import Icon from '@components/Icon/Icon.vue'
 
-describe('Button', () => {
+describe('Button.vue', () => {
   it('should basic button', () => {
     const wrapper = mount(Button, {
       props: {
@@ -14,12 +14,12 @@ describe('Button', () => {
         default: 'button'
       }
     })
-    console.log('dom: ', wrapper.html())
+    // console.log('dom: ', wrapper.html())
     expect(wrapper.classes()).toContain('s-button--primary')
     expect(wrapper.get('button').text()).toBe('button')
 
     wrapper.get('button').trigger('click')
-    console.log('event emitted: ', wrapper.emitted())
+    // console.log('event emitted: ', wrapper.emitted())
     expect(wrapper.emitted()).toHaveProperty('click')
   })
 
@@ -71,7 +71,7 @@ describe('Button', () => {
         stubs: ['Icon']
       }
     })
-    console.log('icon loading: ', wrapper.html())
+    // console.log('icon loading: ', wrapper.html())
     const iconElement = wrapper.findComponent(Icon)
     expect(iconElement.exists()).toBeTruthy()
     expect(iconElement.attributes('icon')).toBe('spinner')
