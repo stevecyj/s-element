@@ -12,6 +12,30 @@ describe('Button', () => {
         default: 'button'
       }
     })
-    console.log(wrapper.html())
+    console.log('dom: ', wrapper.html())
+    expect(wrapper.classes()).toContain('s-button--primary')
+    expect(wrapper.get('button').text()).toBe('button')
+
+    wrapper.get('button').trigger('click')
+    console.log('event emitted: ', wrapper.emitted())
+    expect(wrapper.emitted()).toHaveProperty('click')
+  })
+
+  it('should disabled', () => {
+    const wrapper = mount(Button, {
+      props: {
+        disabled: true
+      },
+      slots: {
+        default: 'disabled'
+      }
+    })
+    // attributes
+    expect(wrapper.attributes('disabled')).toBeDefined()
+    // find dom
+    expect(wrapper.find('button').element.disabled).toBeDefined()
+
+    wrapper.get('button').trigger('click')
+    expect(wrapper.emitted()).not.toHaveProperty('click')
   })
 })
