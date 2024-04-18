@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ButtonProps } from './types'
+import Icon from '@components/Icon/Icon.vue'
 defineOptions({
   name: 'SButton'
 })

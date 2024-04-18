@@ -1,6 +1,8 @@
 import { it, expect, describe } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Button from './Button.vue'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import Icon from '@components/Icon/Icon.vue'
 
 describe('Button', () => {
   it('should basic button', () => {
@@ -37,5 +39,42 @@ describe('Button', () => {
 
     wrapper.get('button').trigger('click')
     expect(wrapper.emitted()).not.toHaveProperty('click')
+  })
+
+  it('should icon arrow-up', () => {
+    const wrapper = mount(Button, {
+      props: {
+        icon: 'arrow-up'
+      },
+      slots: {
+        default: 'icon'
+      },
+      global: {
+        stubs: ['FontAwesomeIcon']
+      }
+    })
+    // console.log('icon arrow-up: ', wrapper.html())
+    const iconElement = wrapper.findComponent(FontAwesomeIcon)
+    expect(iconElement.exists()).toBeTruthy()
+    expect(iconElement.attributes('icon')).toBe('arrow-up')
+  })
+
+  it('should loading', () => {
+    const wrapper = mount(Button, {
+      props: {
+        loading: true
+      },
+      slots: {
+        default: 'loading'
+      },
+      global: {
+        stubs: ['Icon']
+      }
+    })
+    console.log('icon loading: ', wrapper.html())
+    const iconElement = wrapper.findComponent(Icon)
+    expect(iconElement.exists()).toBeTruthy()
+    expect(iconElement.attributes('icon')).toBe('spinner')
+    expect(wrapper.attributes('disabled')).toBeDefined()
   })
 })
