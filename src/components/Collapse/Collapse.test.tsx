@@ -89,4 +89,52 @@ describe('Collapse.vue', () => {
 
     expect(onChange).not.toHaveBeenCalled()
   })
+
+  it('should accordion', async () => {
+    const wrapper = mount(
+      () => (
+        <Collapse accordion modelValue={['a']} onChange={onChange}>
+          <CollapseItem title="title a" name="a">
+            content a
+          </CollapseItem>
+          <CollapseItem title="title b" name="b">
+            content b
+          </CollapseItem>
+          <CollapseItem title="title c" name="c" disabled>
+            content c
+          </CollapseItem>
+        </Collapse>
+      ),
+      {
+        global: {
+          stubs: ['Icon']
+        },
+        attachTo: document.body
+      }
+    )
+    const headers = wrapper.findAll('.s-collapse-item__header')
+    const contents = wrapper.findAll('.s-collapse-item__wrapper')
+
+    const firstHeader = headers[0]
+    const secondHeader = headers[1]
+
+    const firstContent = contents[0]
+    const secondContent = contents[1]
+
+    expect(firstContent.isVisible()).toBeTruthy()
+    console.log(wrapper.html())
+    expect(firstHeader.classes()).toContain('is-active')
+
+    await secondHeader.trigger('click')
+    expect(firstContent.isVisible()).toBeFalsy()
+    expect(secondContent.isVisible()).toBeTruthy()
+    expect(firstHeader.classes()).not.toContain('is-active')
+    expect(secondHeader.classes()).toContain('is-active')
+
+    await firstHeader.trigger('click')
+    expect(firstContent.isVisible()).toBeTruthy()
+    expect(secondContent.isVisible()).toBeFalsy()
+    expect(firstHeader.classes()).toContain('is-active')
+    expect(secondHeader.classes()).not.toContain('is-active')
+  })
 })
