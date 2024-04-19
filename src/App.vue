@@ -80,6 +80,8 @@ onMounted(() => {
     <CollapseItem name="c" title="Title C" disabled>
       <div>this is cccc test</div>
     </CollapseItem>
+
+    <CollapseItem name="d" title="Title D"> this is ddd test </CollapseItem>
   </Collapse>
   {{ openedValue }}
   <br />

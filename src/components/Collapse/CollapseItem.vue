@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { CollapseItemProps } from './types'
 import { collapseContextKey } from './types'
+import Icon from '@components/Icon/Icon.vue'
 
 defineOptions({
   name: 'SCollapseItem'
