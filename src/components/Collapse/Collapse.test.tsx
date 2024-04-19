@@ -5,9 +5,10 @@ import CollapseItem from './CollapseItem.vue'
 
 describe('Collapse.vue', () => {
   it('basic collapse', async () => {
+    const onChange = vi.fn()
     const wrapper = mount(
       () => (
-        <Collapse modelValue={['a']}>
+        <Collapse modelValue={['a']} onChange={onChange}>
           <CollapseItem title="title a" name="a">
             content a
           </CollapseItem>
@@ -49,8 +50,10 @@ describe('Collapse.vue', () => {
     await firstHeader.trigger('click')
     console.log(firstContent.html())
     expect(firstContent.isVisible()).toBeFalsy()
+    expect(onChange).toHaveBeenCalledWith([])
     await secondHeader.trigger('click')
     expect(secondHeader.isVisible()).toBeTruthy()
+    expect(onChange).toHaveBeenLastCalledWith(['b'])
 
     // disabled
     const disabledHeader = headers[2]
