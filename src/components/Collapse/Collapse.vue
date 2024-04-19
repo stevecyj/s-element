@@ -23,19 +23,22 @@ if (props.accordion && activeNames.value.length > 1) {
 
 const handleItemClick = (name: NameType) => {
   // 有 accordion 时，只能展开一个
+  let _activeNames = [...activeNames.value]
   if (props.accordion) {
-    activeNames.value = activeNames.value[0] === name ? [] : [name]
+    _activeNames = activeNames.value[0] === name ? [] : [name]
+    activeNames.value = _activeNames
   } else {
-    const index = activeNames.value.indexOf(name)
+    const index = _activeNames.indexOf(name)
     if (index === -1) {
-      activeNames.value.push(name)
+      _activeNames.push(name)
     } else {
-      activeNames.value.splice(index, 1)
+      _activeNames.splice(index, 1)
     }
+    activeNames.value = _activeNames
   }
 
-  emits('update:modelValue', activeNames.value)
-  emits('change', activeNames.value)
+  emits('update:modelValue', _activeNames)
+  emits('change', _activeNames)
 }
 
 provide(collapseContextKey, {
