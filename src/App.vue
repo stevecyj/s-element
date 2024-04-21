@@ -1,38 +1,38 @@
 <script setup lang="ts">
 import type { ButtonInstance } from '@components/Button/types'
-import { useFloating, type Placement } from '@floating-ui/vue'
+import {
+  useFloating,
+  offset,
+  flip,
+  shift,
+  autoUpdate,
+  hide
+} from '@floating-ui/vue'
 
 const buttonRef = ref<ButtonInstance | null>(null)
 const openedValue = ref(['a'])
-
-const triggerNode = ref<HTMLElement | null>(null)
-const overlayNode = ref<HTMLElement | null>(null)
-const placement = ref<Placement>('right')
-const { floatingStyles } = useFloating(triggerNode, overlayNode, { placement })
 
 onMounted(() => {
   console.log('buttonRef: ', buttonRef.value?.ref)
 
   setTimeout(() => {
     openedValue.value = ['a', 'b']
-    placement.value = 'bottom'
-  }, 2000)
+  }, 5000)
 })
 </script>
 
 <template>
   <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="./assets/logo.svg"
-      width="125"
-      height="125"
-      ref="triggerNode"
-    />
-    <div ref="overlayNode" :style="floatingStyles">
-      <h1>hello tooltip</h1>
-    </div>
+    <Tooltip content="Hello tooltip!" placement="right">
+      <img
+        alt="Vue logo"
+        class="logo"
+        src="./assets/logo.svg"
+        width="125"
+        height="125"
+      />
+    </Tooltip>
+    <!-- <div>Tooltip</div> -->
   </header>
 
   <Icon icon="arrow-up" size="2xl" type="primary" />
