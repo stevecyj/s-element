@@ -9,7 +9,7 @@ import './styles/index.css'
 library.add(fas)
 
 import { createApp } from 'vue'
-import App from './App2.vue'
+import App from './App.vue'
 
 console.log('App2: ', App.render?.toString())
 createApp(App).mount('#app')
