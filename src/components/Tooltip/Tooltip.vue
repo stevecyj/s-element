@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TooltipEmits, TooltipProps } from './types'
+import type { TooltipEmits, TooltipProps, TooltipInstance } from './types'
 import { useFloating } from '@floating-ui/vue'
 import useClickOutside from '@/composable/useClickOutside'
 
@@ -26,19 +26,21 @@ const { floatingStyles, middlewareData } = useFloating(
 
 const open = () => {
   if (!triggerNode.value || !popperNode.value) return
+  console.log('open tooltip')
   popperNode.value.style.visibility = 'visible'
   isOpen.value = true
 }
 
 const close = () => {
+  console.log('close tooltip')
   if (!triggerNode.value || !popperNode.value) return
   popperNode.value.style.visibility = 'hidden'
   isOpen.value = false
 }
 
 useClickOutside(wrapperNode, () => {
-  if (props.trigger === 'click' || isOpen.value) {
-    // console.log('click outside')
+  if (props.trigger === 'click' && isOpen.value && !props.manual) {
+    console.log('click outside')
     close()
   }
 })
@@ -60,7 +62,21 @@ const attachEvents = () => {
     events['click'] = togglePopper
   }
 }
-attachEvents()
+if (!props.manual) {
+  attachEvents()
+}
+
+watch(
+  () => props.manual,
+  (isManual) => {
+    if (isManual) {
+      events = {}
+      outerEvents = {}
+    } else {
+      attachEvents()
+    }
+  }
+)
 
 watch(
   () => props.trigger,
@@ -72,6 +88,11 @@ watch(
     }
   }
 )
+
+defineExpose<TooltipInstance>({
+  show: open,
+  hide: close
+})
 </script>
 
 <template>

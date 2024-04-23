@@ -1,9 +1,20 @@
 <script setup lang="ts">
 import type { ButtonInstance } from '@components/Button/types'
+import type { TooltipInstance } from './components/Tooltip/types'
 
 const buttonRef = ref<ButtonInstance | null>(null)
+const tooltipRef = ref<TooltipInstance | null>(null)
 const openedValue = ref(['a'])
 const trigger = ref<any>('click')
+
+const open = () => {
+  console.log('show')
+  tooltipRef.value?.show()
+}
+const close = () => {
+  console.log('hide')
+  tooltipRef.value?.hide()
+}
 
 onMounted(() => {
   // console.log('buttonRef: ', buttonRef.value?.ref)
@@ -18,7 +29,13 @@ onMounted(() => {
 
 <template>
   <header>
-    <Tooltip content="Hello tooltip!" placement="right" :trigger="trigger">
+    <Tooltip
+      content="Hello tooltip!"
+      placement="right"
+      :trigger="trigger"
+      ref="tooltipRef"
+      manual
+    >
       <img
         alt="Vue logo"
         class="logo"
@@ -29,6 +46,10 @@ onMounted(() => {
     </Tooltip>
     <!-- <div>Tooltip</div> -->
   </header>
+  <div>
+    <Button type="primary" @click="open">open tooltip</Button>
+    <Button type="success" @click="close">close tooltip</Button>
+  </div>
 
   <Icon icon="arrow-up" size="2xl" type="primary" />
   <Icon icon="arrow-up" size="2xl" type="danger" />
