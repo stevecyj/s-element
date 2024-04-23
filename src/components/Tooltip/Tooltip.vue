@@ -2,12 +2,18 @@
 import type { TooltipEmits, TooltipProps } from './types'
 import { useFloating } from '@floating-ui/vue'
 
-const props = withDefaults(defineProps<TooltipProps>(), { placement: 'bottom' })
+const props = withDefaults(defineProps<TooltipProps>(), {
+  placement: 'bottom',
+  trigger: 'hover'
+})
 const emits = defineEmits<TooltipEmits>()
 
 const isOpen = ref(false)
 const triggerNode = ref<HTMLElement | null>(null)
 const popperNode = ref<HTMLElement | null>(null)
+let events: Record<string, any> = reactive({})
+let outerEvents: Record<string, any> = reactive({})
+
 const { floatingStyles, middlewareData } = useFloating(
   triggerNode,
   popperNode,
@@ -16,18 +22,52 @@ const { floatingStyles, middlewareData } = useFloating(
   }
 )
 
+const open = () => {
+  if (!triggerNode.value || !popperNode.value) return
+  popperNode.value.style.visibility = 'visible'
+  isOpen.value = true
+}
+
+const close = () => {
+  if (!triggerNode.value || !popperNode.value) return
+  popperNode.value.style.visibility = 'hidden'
+  isOpen.value = false
+}
+
 const togglePopper = () => {
   if (!triggerNode.value || !popperNode.value) return
   popperNode.value.style.visibility =
     popperNode.value.style.visibility === 'hidden' ? 'visible' : 'hidden'
+  isOpen.value = popperNode.value.style.visibility === 'hidden' ? false : true
 
   emits('visible-change', isOpen.value)
 }
+
+const attachEvents = () => {
+  if (props.trigger === 'hover') {
+    events['mouseenter'] = open
+    outerEvents['mouseleave'] = close
+  } else if (props.trigger === 'click') {
+    events['click'] = togglePopper
+  }
+}
+attachEvents()
+
+watch(
+  () => props.trigger,
+  (newTrigger, oldTrigger) => {
+    if (newTrigger !== oldTrigger) {
+      events = {}
+      outerEvents = {}
+      attachEvents()
+    }
+  }
+)
 </script>
 
 <template>
-  <div class="s-tooltip">
-    <div class="s-tooltip__trigger" ref="triggerNode" @click="togglePopper">
+  <div class="s-tooltip" v-on="outerEvents">
+    <div class="s-tooltip__trigger" ref="triggerNode" v-on="events">
       <slot />
     </div>
     <div

@@ -1,29 +1,23 @@
 <script setup lang="ts">
 import type { ButtonInstance } from '@components/Button/types'
-import {
-  useFloating,
-  offset,
-  flip,
-  shift,
-  autoUpdate,
-  hide
-} from '@floating-ui/vue'
 
 const buttonRef = ref<ButtonInstance | null>(null)
 const openedValue = ref(['a'])
+const trigger = ref<any>('click')
 
 onMounted(() => {
   console.log('buttonRef: ', buttonRef.value?.ref)
 
   setTimeout(() => {
     openedValue.value = ['a', 'b']
+    trigger.value = 'hover'
   }, 5000)
 })
 </script>
 
 <template>
   <header>
-    <Tooltip content="Hello tooltip!" placement="right">
+    <Tooltip content="Hello tooltip!" placement="right" :trigger="trigger">
       <img
         alt="Vue logo"
         class="logo"
