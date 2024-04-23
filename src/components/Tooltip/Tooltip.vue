@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { TooltipEmits, TooltipProps } from './types'
 import { useFloating } from '@floating-ui/vue'
+import useClickOutside from '@/composable/useClickOutside'
 
 const props = withDefaults(defineProps<TooltipProps>(), {
   placement: 'bottom',
@@ -11,6 +12,7 @@ const emits = defineEmits<TooltipEmits>()
 const isOpen = ref(false)
 const triggerNode = ref<HTMLElement | null>(null)
 const popperNode = ref<HTMLElement | null>(null)
+const wrapperNode = ref<HTMLElement | null>(null)
 let events: Record<string, any> = reactive({})
 let outerEvents: Record<string, any> = reactive({})
 
@@ -33,6 +35,13 @@ const close = () => {
   popperNode.value.style.visibility = 'hidden'
   isOpen.value = false
 }
+
+useClickOutside(wrapperNode, () => {
+  if (props.trigger === 'click' || isOpen.value) {
+    // console.log('click outside')
+    close()
+  }
+})
 
 const togglePopper = () => {
   if (!triggerNode.value || !popperNode.value) return
@@ -66,7 +75,7 @@ watch(
 </script>
 
 <template>
-  <div class="s-tooltip" v-on="outerEvents">
+  <div class="s-tooltip" v-on="outerEvents" ref="wrapperNode">
     <div class="s-tooltip__trigger" ref="triggerNode" v-on="events">
       <slot />
     </div>

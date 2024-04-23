@@ -6,11 +6,12 @@ const openedValue = ref(['a'])
 const trigger = ref<any>('click')
 
 onMounted(() => {
-  console.log('buttonRef: ', buttonRef.value?.ref)
+  // console.log('buttonRef: ', buttonRef.value?.ref)
 
   setTimeout(() => {
+    // for test effect
     openedValue.value = ['a', 'b']
-    trigger.value = 'hover'
+    // trigger.value = 'hover'
   }, 5000)
 })
 </script>
