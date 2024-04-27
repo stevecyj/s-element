@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { TooltipEmits, TooltipProps, TooltipInstance } from './types'
-import { useFloating } from '@floating-ui/vue'
+import { useFloating, offset, flip, shift } from '@floating-ui/vue'
 import useClickOutside from '@/composable/useClickOutside'
 
 const props = withDefaults(defineProps<TooltipProps>(), {
@@ -20,7 +20,8 @@ const { floatingStyles, middlewareData } = useFloating(
   triggerNode,
   popperNode,
   {
-    placement: props.placement
+    placement: props.placement,
+    middleware: [offset(props.offset), flip(), shift()]
   }
 )
 

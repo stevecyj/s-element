@@ -4,6 +4,7 @@ export interface TooltipProps {
   content?: string
   trigger?: 'hover' | 'click'
   placement?: Placement
+  offset?: number
   manual?: boolean
 }
 

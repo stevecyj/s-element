@@ -32,6 +32,7 @@ onMounted(() => {
     <Tooltip
       content="Hello tooltip!"
       placement="right"
+      :offset="10"
       :trigger="trigger"
       ref="tooltipRef"
       manual
