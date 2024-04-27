@@ -52,10 +52,12 @@ onMounted(() => {
     <Button type="success" @click="close">close tooltip</Button>
   </div>
 
-  <Icon icon="arrow-up" size="2xl" type="primary" />
-  <Icon icon="arrow-up" size="2xl" type="danger" />
-  <Icon icon="arrow-up" size="2xl" type="danger" color="#0e7a0d" />
-  <Icon icon="user-secret" size="xl" type="info" />
+  <div>
+    <Icon icon="arrow-up" size="2xl" type="primary" />
+    <Icon icon="arrow-up" size="2xl" type="danger" />
+    <Icon icon="arrow-up" size="2xl" type="danger" color="#0e7a0d" />
+    <Icon icon="user-secret" size="xl" type="info" />
+  </div>
 
   <main>
     <Button ref="buttonRef">Default Button</Button>
@@ -66,6 +68,7 @@ onMounted(() => {
     <Button disabled>test button</Button>
   </main>
   <br />
+
   <div>
     <Button type="primary">Primary</Button>
     <Button type="success">Success</Button>
@@ -74,6 +77,7 @@ onMounted(() => {
     <Button type="info">Info</Button>
   </div>
   <br />
+
   <div>
     <Button type="primary" plain>Primary</Button>
     <Button type="success" plain>Success</Button>
@@ -82,11 +86,13 @@ onMounted(() => {
     <Button type="info" plain>Info</Button>
   </div>
   <br />
+
   <div>
     <Button size="large">Large</Button>
     <Button size="small">Small</Button>
   </div>
   <br />
+
   <div>
     <Button size="large" loading>Large</Button>
     <Button size="large" icon="fish">Fish</Button>
