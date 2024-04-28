@@ -6,6 +6,7 @@ import useClickOutside from '@/composable/useClickOutside'
 const props = withDefaults(defineProps<TooltipProps>(), {
   placement: 'bottom',
   trigger: 'hover',
+  manual: false,
   transition: 'fade'
 })
 const emits = defineEmits<TooltipEmits>()
@@ -17,26 +18,20 @@ const wrapperNode = ref<HTMLElement | null>(null)
 let events: Record<string, any> = reactive({})
 let outerEvents: Record<string, any> = reactive({})
 
-const { floatingStyles, middlewareData } = useFloating(
-  triggerNode,
-  popperNode,
-  {
-    placement: props.placement,
-    middleware: [offset(props.offset), flip(), shift()]
-  }
-)
+const { floatingStyles } = useFloating(triggerNode, popperNode, {
+  placement: props.placement,
+  middleware: [offset(props.offset), flip(), shift()]
+})
 
 const open = () => {
   if (!triggerNode.value) return
   console.log('open tooltip', props.trigger)
-  // popperNode.value.style.visibility = 'visible'
   isOpen.value = true
 }
 
 const close = () => {
   console.log('close tooltip')
   if (!triggerNode.value) return
-  // popperNode.value.style.visibility = 'hidden'
   isOpen.value = false
 }
 
@@ -49,12 +44,11 @@ useClickOutside(wrapperNode, () => {
 
 const togglePopper = () => {
   if (!triggerNode.value) return
-  isOpen.value = !isOpen.value
-  // popperNode.value.style.visibility =
-  //   popperNode.value.style.visibility === 'hidden' ? 'visible' : 'hidden'
-  // isOpen.value = popperNode.value.style.visibility === 'hidden' ? false : true
-
-  emits('visible-change', isOpen.value)
+  if (isOpen.value) {
+    close()
+  } else {
+    open()
+  }
 }
 
 const attachEvents = () => {
@@ -110,7 +104,6 @@ defineExpose<TooltipInstance>({
         ref="popperNode"
         :style="{
           ...floatingStyles
-          // visibility: middlewareData.hide?.referenceHidden ? 'visible' : 'hidden'
         }"
       >
         <slot name="content">{{ content }}</slot>
