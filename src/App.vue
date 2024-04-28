@@ -32,10 +32,9 @@ onMounted(() => {
     <Tooltip
       content="Hello tooltip!"
       placement="right"
-      :offset="10"
-      :trigger="trigger"
-      ref="tooltipRef"
       manual
+      :offset="10"
+      ref="tooltipRef"
     >
       <img
         alt="Vue logo"

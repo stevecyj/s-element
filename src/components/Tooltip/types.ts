@@ -6,6 +6,7 @@ export interface TooltipProps {
   placement?: Placement
   offset?: number
   manual?: boolean
+  transition?: string
 }
 
 export interface TooltipEmits {

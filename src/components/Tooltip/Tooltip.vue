@@ -5,7 +5,8 @@ import useClickOutside from '@/composable/useClickOutside'
 
 const props = withDefaults(defineProps<TooltipProps>(), {
   placement: 'bottom',
-  trigger: 'hover'
+  trigger: 'hover',
+  transition: 'fade'
 })
 const emits = defineEmits<TooltipEmits>()
 
@@ -26,16 +27,16 @@ const { floatingStyles, middlewareData } = useFloating(
 )
 
 const open = () => {
-  if (!triggerNode.value || !popperNode.value) return
-  console.log('open tooltip')
-  popperNode.value.style.visibility = 'visible'
+  if (!triggerNode.value) return
+  console.log('open tooltip', props.trigger)
+  // popperNode.value.style.visibility = 'visible'
   isOpen.value = true
 }
 
 const close = () => {
   console.log('close tooltip')
-  if (!triggerNode.value || !popperNode.value) return
-  popperNode.value.style.visibility = 'hidden'
+  if (!triggerNode.value) return
+  // popperNode.value.style.visibility = 'hidden'
   isOpen.value = false
 }
 
@@ -47,10 +48,11 @@ useClickOutside(wrapperNode, () => {
 })
 
 const togglePopper = () => {
-  if (!triggerNode.value || !popperNode.value) return
-  popperNode.value.style.visibility =
-    popperNode.value.style.visibility === 'hidden' ? 'visible' : 'hidden'
-  isOpen.value = popperNode.value.style.visibility === 'hidden' ? false : true
+  if (!triggerNode.value) return
+  isOpen.value = !isOpen.value
+  // popperNode.value.style.visibility =
+  //   popperNode.value.style.visibility === 'hidden' ? 'visible' : 'hidden'
+  // isOpen.value = popperNode.value.style.visibility === 'hidden' ? false : true
 
   emits('visible-change', isOpen.value)
 }
@@ -101,16 +103,19 @@ defineExpose<TooltipInstance>({
     <div class="s-tooltip__trigger" ref="triggerNode" v-on="events">
       <slot />
     </div>
-    <div
-      class="s-tooltip__popper"
-      ref="popperNode"
-      :style="{
-        ...floatingStyles,
-        visibility: middlewareData.hide?.referenceHidden ? 'visible' : 'hidden'
-      }"
-    >
-      <slot name="content">{{ content }}</slot>
-    </div>
+    <Transition :name="transition">
+      <div
+        v-if="isOpen"
+        class="s-tooltip__popper"
+        ref="popperNode"
+        :style="{
+          ...floatingStyles
+          // visibility: middlewareData.hide?.referenceHidden ? 'visible' : 'hidden'
+        }"
+      >
+        <slot name="content">{{ content }}</slot>
+      </div>
+    </Transition>
   </div>
 </template>
 
