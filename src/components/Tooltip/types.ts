@@ -7,6 +7,8 @@ export interface TooltipProps {
   offset?: number
   manual?: boolean
   transition?: string
+  openDelay?: number
+  closeDelay?: number
 }
 
 export interface TooltipEmits {
@@ -14,6 +16,6 @@ export interface TooltipEmits {
 }
 
 export interface TooltipInstance {
-  show: () => void
-  hide: () => void
+  show?: () => void
+  hide?: () => void
 }

@@ -5,14 +5,16 @@ import type { TooltipInstance } from './components/Tooltip/types'
 const buttonRef = ref<ButtonInstance | null>(null)
 const tooltipRef = ref<TooltipInstance | null>(null)
 const openedValue = ref(['a'])
-const trigger = ref<any>('click')
+const trigger = ref<any>('hover')
 
 const open = () => {
   console.log('show')
+  if (!tooltipRef.value?.show) return
   tooltipRef.value?.show()
 }
 const close = () => {
   console.log('hide')
+  if (!tooltipRef.value?.hide) return
   tooltipRef.value?.hide()
 }
 
@@ -32,8 +34,10 @@ onMounted(() => {
     <Tooltip
       content="Hello tooltip!"
       placement="right"
-      manual
+      :trigger="trigger"
       :offset="10"
+      :open-delay="1000"
+      :close-delay="1000"
       ref="tooltipRef"
     >
       <img

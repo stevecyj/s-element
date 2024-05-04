@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { TooltipEmits, TooltipProps, TooltipInstance } from './types'
+import { debounce } from 'lodash-es'
 import { useFloating, offset, flip, shift } from '@floating-ui/vue'
 import useClickOutside from '@/composable/useClickOutside'
 
@@ -18,43 +19,53 @@ const wrapperNode = ref<HTMLElement | null>(null)
 let events: Record<string, any> = reactive({})
 let outerEvents: Record<string, any> = reactive({})
 
+let openTimes = 0
+let closeTimes = 0
+
 const { floatingStyles } = useFloating(triggerNode, popperNode, {
   placement: props.placement,
   middleware: [offset(props.offset), flip(), shift()]
 })
 
 const open = () => {
+  openTimes++
+  console.log('open tooltip', openTimes)
   if (!triggerNode.value) return
   console.log('open tooltip', props.trigger)
   isOpen.value = true
 }
 
 const close = () => {
+  closeTimes++
+  console.log('close tooltip', closeTimes)
   console.log('close tooltip')
   if (!triggerNode.value) return
   isOpen.value = false
 }
 
+const openDebounce = debounce(open, props.openDelay)
+const closeDebounce = debounce(close, props.closeDelay)
+
 useClickOutside(wrapperNode, () => {
   if (props.trigger === 'click' && isOpen.value && !props.manual) {
     console.log('click outside')
-    close()
+    closeDebounce()
   }
 })
 
 const togglePopper = () => {
   if (!triggerNode.value) return
   if (isOpen.value) {
-    close()
+    closeDebounce()
   } else {
-    open()
+    openDebounce()
   }
 }
 
 const attachEvents = () => {
   if (props.trigger === 'hover') {
-    events['mouseenter'] = open
-    outerEvents['mouseleave'] = close
+    events['mouseenter'] = openDebounce
+    outerEvents['mouseleave'] = closeDebounce
   } else if (props.trigger === 'click') {
     events['click'] = togglePopper
   }
@@ -87,8 +98,7 @@ watch(
 )
 
 defineExpose<TooltipInstance>({
-  show: open,
-  hide: close
+  ...(props.manual ? { show: openDebounce, hide: closeDebounce } : {})
 })
 </script>
 
