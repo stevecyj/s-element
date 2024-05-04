@@ -46,26 +46,35 @@ const close = () => {
 const openDebounce = debounce(open, props.openDelay)
 const closeDebounce = debounce(close, props.closeDelay)
 
+const openFinal = () => {
+  closeDebounce.cancel()
+  openDebounce()
+}
+const closeFinal = () => {
+  openDebounce.cancel()
+  closeDebounce()
+}
+
 useClickOutside(wrapperNode, () => {
   if (props.trigger === 'click' && isOpen.value && !props.manual) {
     console.log('click outside')
-    closeDebounce()
+    closeFinal()
   }
 })
 
 const togglePopper = () => {
   if (!triggerNode.value) return
   if (isOpen.value) {
-    closeDebounce()
+    closeFinal()
   } else {
-    openDebounce()
+    openFinal()
   }
 }
 
 const attachEvents = () => {
   if (props.trigger === 'hover') {
-    events['mouseenter'] = openDebounce
-    outerEvents['mouseleave'] = closeDebounce
+    events['mouseenter'] = openFinal
+    outerEvents['mouseleave'] = closeFinal
   } else if (props.trigger === 'click') {
     events['click'] = togglePopper
   }
@@ -98,7 +107,7 @@ watch(
 )
 
 defineExpose<TooltipInstance>({
-  ...(props.manual ? { show: openDebounce, hide: closeDebounce } : {})
+  ...(props.manual ? { show: openFinal, hide: closeFinal } : {})
 })
 </script>
 
