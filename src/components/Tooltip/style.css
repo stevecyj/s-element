@@ -2,6 +2,7 @@
   --s-popover-bg-color: var(--s-bg-color-overlay);
   --s-popover-font-size: var(--s-font-size-base);
   --s-popover-border-color: var(--s-border-color);
+  /* --s-popover-border-color: blue; */
   --s-popover-padding: 12px;
   --s-popover-border-radius: 4px;
   display: inline-block;
@@ -28,6 +29,7 @@
       height: 8px;
       box-sizing: border-box;
       background: var(--s-popover-bg-color);
+      /* background: red; */
     }
     #arrow {
       visibility: hidden;
@@ -37,6 +39,8 @@
       content: '';
       transform: rotate(45deg);
     }
+
+    /* popper 4個不同方向 */
     &[data-popper-placement^='top'] > #arrow {
       bottom: -5px;
     }
@@ -52,18 +56,24 @@
     &[data-popper-placement^='right'] > #arrow {
       left: -5px;
     }
+
+    /* popper 露出的三角形、邊框 */
+    /* 旋轉 45度、top, 露出右、下 */
     &[data-popper-placement^='top'] > #arrow::before {
       border-right: 1px solid var(--s-popover-border-color);
       border-bottom: 1px solid var(--s-popover-border-color);
     }
+    /* 旋轉 45度、bottom, 露出左、上 */
     &[data-popper-placement^='bottom'] > #arrow::before {
       border-left: 1px solid var(--s-popover-border-color);
       border-top: 1px solid var(--s-popover-border-color);
     }
+    /* 旋轉 45度、left, 露出右、上 */
     &[data-popper-placement^='left'] > #arrow::before {
       border-right: 1px solid var(--s-popover-border-color);
       border-top: 1px solid var(--s-popover-border-color);
     }
+    /* 旋轉 45度、right, 露出左、下 */
     &[data-popper-placement^='right'] > #arrow::before {
       border-left: 1px solid var(--s-popover-border-color);
       border-bottom: 1px solid var(--s-popover-border-color);

@@ -5,7 +5,7 @@ import type { TooltipInstance } from './components/Tooltip/types'
 const buttonRef = ref<ButtonInstance | null>(null)
 const tooltipRef = ref<TooltipInstance | null>(null)
 const openedValue = ref(['a'])
-const trigger = ref<any>('hover')
+const trigger = ref<any>('click')
 
 const open = () => {
   console.log('show')
